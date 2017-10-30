@@ -1,0 +1,72 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 PRESERVE8
+    2 00000000                 THUMB
+    3 00000000                 AREA             appcode, CODE, READONLY
+    4 00000000                 EXPORT           __main
+    5 00000000                 ENTRY
+    6 00000000         __main  FUNCTION
+    7 00000000         ; Getting the remainder of a division:
+    8 00000000         ; udiv                rT,rA,rB                    /* rT 
+                       = rA / rB      (example: 1 = 17 / 10) */
+    9 00000000         ; mls                 rT,rT,rB,rA                 /* rT 
+                       = rA - rT * rB (example: 7 = 17 - (1 * 10)) */
+   10 00000000        0 
+                       divisor RN               r0
+   11 00000000        1 
+                       number  RN               r1
+   12 00000000 F04F 0002       MOV              divisor, #2
+   13 00000004 F04F 0105       MOV              number, #5
+   14 00000008 FBB1 F2F0       udiv             r2, number, divisor
+   15 0000000C FB02 1210       MLS              r2, r2, divisor, number
+   16 00000010 2A00            CMP              r2, #0
+   17 00000012 BF0C            ITE              EQ
+   18 00000014 2300            MOVEQ            r3, #0      ; r3=0 if number is
+                                                             even
+   19 00000016 2301            MOVNE            r3, #1      ; r3=1 if number is
+                                                             odd
+   20 00000018 E7FE    stop    B                stop        ; stop program
+   21 0000001A                 ENDFUNC
+   22 0000001A                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\objects\final.d -o.\objects\final.o -I.\RTE\_Target_1 -IC:\Ke
+il_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.
+0.1\Device\ARM\ARMCM4\Include --predefine="__EVAL SETA 1" --predefine="__UVISIO
+N_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="ARMCM4_FP SETA 1" -
+-list=.\listings\final.lst final.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 6 in file final.s
+   Uses
+      At line 4 in file final.s
+Comment: __main used once
+appcode 00000000
+
+Symbol: appcode
+   Definitions
+      At line 3 in file final.s
+   Uses
+      None
+Comment: appcode unused
+stop 00000018
+
+Symbol: stop
+   Definitions
+      At line 20 in file final.s
+   Uses
+      At line 20 in file final.s
+Comment: stop used once
+3 symbols
+340 symbols in table
