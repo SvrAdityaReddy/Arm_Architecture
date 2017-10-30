@@ -10,19 +10,28 @@ ARM Macro Assembler    Page 1
     4 00000000                 EXPORT           __main
     5 00000000                 ENTRY
     6 00000000         __main  FUNCTION
-    7 00000000 F04F 0011       MOV              r0, #0x11   ; load initial valu
-                                                            e
-    8 00000004 EA4F 0140       LSL              r1, r0, #1  ; shift 1 bit left
-    9 00000008 EA4F 0241       LSL              r2, r1, #1  ; shift 1 bit left
-   10 0000000C E7FE    stop    B                stop        ; stop program
-   11 0000000E                 ENDFUNC
-   12 0000000E                 END
+    7 00000000 F04F 0102       MOV              r1, #2
+    8 00000004 F04F 0202       MOV              r2, #2
+    9 00000008         loop
+   10 00000008 EA91 0F02       TEQ              r1, r2
+   11 0000000C D004            BEQ              result
+   12 0000000E 4291            CMP              r1, r2
+   13 00000010 BFCC            ITE              GT
+   14 00000012 1A89            SUBGT            r1, r2
+   15 00000014 1A52            SUBLE            r2, r1
+   16 00000016 E7F7            B                loop
+   17 00000018         result
+   18 00000018 460B            MOV              r3, r1      ;Output is stored i
+                                                            n r3
+   19 0000001A E7FE    stop    B                stop        ; stop program
+   20 0000001C                 ENDFUNC
+   21 0000001C                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
-erwork --depend=.\objects\final.d -o.\objects\final.o -I"D:\ARM simulator\KIEL\
-First_working\RTE" -Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include -I
-d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\Device\ARM\ARMCM4\Include --predefine
-="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 520" --predefine="_RTE_ SE
-TA 1" --predefine="ARMCM4_FP SETA 1" --list=.\listings\final.lst final.s
+erwork --depend=.\objects\final.d -o.\objects\final.o -I.\RTE\_Target_1 -IC:\Ke
+il_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.
+0.1\Device\ARM\ARMCM4\Include --predefine="__EVAL SETA 1" --predefine="__UVISIO
+N_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="ARMCM4_FP SETA 1" -
+-list=.\listings\final.lst final.s
 
 
 
@@ -45,13 +54,29 @@ Symbol: appcode
    Uses
       None
 Comment: appcode unused
-stop 0000000C
+loop 00000008
+
+Symbol: loop
+   Definitions
+      At line 9 in file final.s
+   Uses
+      At line 16 in file final.s
+Comment: loop used once
+result 00000018
+
+Symbol: result
+   Definitions
+      At line 17 in file final.s
+   Uses
+      At line 11 in file final.s
+Comment: result used once
+stop 0000001A
 
 Symbol: stop
    Definitions
-      At line 10 in file final.s
+      At line 19 in file final.s
    Uses
-      At line 10 in file final.s
+      At line 19 in file final.s
 Comment: stop used once
-3 symbols
-338 symbols in table
+5 symbols
+340 symbols in table

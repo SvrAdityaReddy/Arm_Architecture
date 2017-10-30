@@ -420,12 +420,12 @@ ARM Macro Assembler    Page 7
               00000C00 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
-erwork --depend=.\objects\startup_armcm4.d -o.\objects\startup_armcm4.o -I"D:\A
-RM simulator\KIEL\First_working\RTE" -Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta
-4\CMSIS\Include -Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\Device\ARM\ARMCM4\I
-nclude --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 520" --p
-redefine="_RTE_ SETA 1" --predefine="ARMCM4_FP SETA 1" --list=.\listings\startu
-p_armcm4.lst RTE\Device\ARMCM4_FP\startup_ARMCM4.s
+erwork --depend=.\objects\startup_armcm4.d -o.\objects\startup_armcm4.o -I.\RTE
+\_Target_1 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM
+\PACK\ARM\CMSIS\5.0.1\Device\ARM\ARMCM4\Include --predefine="__EVAL SETA 1" --p
+redefine="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="A
+RMCM4_FP SETA 1" --list=.\listings\startup_armcm4.lst RTE\Device\ARMCM4_FP\star
+tup_ARMCM4.s
 
 
 
