@@ -4,25 +4,28 @@
      EXPORT __main
 	 ENTRY 
 __main  FUNCTION
-	MOV r0, #0
-	MOV r1, #1
-	MOV r2, #2
-	CMP r2, #0
+first RN r0
+second RN r1
+number RN r2
+	MOV first, #0
+	MOV second, #1
+	MOV number, #2
+	CMP number, #0
 	BEQ branch1
-	SUB r2, #1
+	SUB number, #1
 loop
-	CMP r2, #0
+	CMP number, #0
 	BEQ branch2
-	MOV r3, r1 ; r3 is temporary variable
-	ADD r1, r0
-	MOV r0, r3
-	SUB r2, #1
+	MOV r3, second ; r3 is temporary variable
+	ADD second, first
+	MOV first, r3
+	SUB number, #1
 	B loop
 branch1 ; if n==0
-	MOV r4, r0 ; Output is stored in r4 if n is zero
+	MOV r4, first ; Output is stored in r4 if n is zero
 	B stop
 branch2 ; if n!=0
-	MOV r4, r1 ; Output is stored in r4 if n is non zero
+	MOV r4, second ; Output is stored in r4 if n is non zero
 stop B stop ; stop program
      ENDFUNC
      END
