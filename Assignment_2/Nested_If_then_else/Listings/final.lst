@@ -35,7 +35,7 @@ ARM Macro Assembler    Page 1
    29 0000001E         ; }
    30 0000001E         ; }
    31 0000001E F04F 0008       MOV              r0, #8
-   32 00000022 F04F 010C       MOV              r1, #12
+   32 00000022 F04F 0106       MOV              r1, #6
    33 00000026 F04F 020A       MOV              r2, #10
    34 0000002A 4288            CMP              r0, r1
    35 0000002C BFC6            ITTE             GT
@@ -82,14 +82,12 @@ ARM Macro Assembler    Page 2
    70 00000054         branch4
    71 00000054 461C            MOV              r4, r3      ; r4 stores greater
                                                              of all three numbe
-                                                            rs number1, number2
-                                                            , number3
+                                                            rs r0, r1, r2
    72 00000056 E000            B                stop
    73 00000058         branch5
    74 00000058 4614            MOV              r4, r2      ; r4 stores greater
                                                              of all three numbe
-                                                            rs number1, number2
-                                                            , number3
+                                                            rs r0, r1, r2
    75 0000005A E7FE    stop    B                stop        ; stop program
    76 0000005C                 ENDFUNC
    77 0000005C                 END

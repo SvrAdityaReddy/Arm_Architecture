@@ -29,7 +29,7 @@ __main  FUNCTION
 	;	}
 	; }
 	MOV r0, #8
-	MOV r1, #12
+	MOV r1, #6
 	MOV r2, #10
 	CMP r0, r1
 	ITTE GT
@@ -68,10 +68,10 @@ branch3
 	BGE branch4
 	B branch5
 branch4
-	MOV r4, r3 ; r4 stores greater of all three numbers number1, number2, number3
+	MOV r4, r3 ; r4 stores greater of all three numbers r0, r1, r2
 	B stop
 branch5
-	MOV r4, r2 ; r4 stores greater of all three numbers number1, number2, number3
+	MOV r4, r2 ; r4 stores greater of all three numbers r0, r1, r2
 stop B stop ; stop program
      ENDFUNC
      END

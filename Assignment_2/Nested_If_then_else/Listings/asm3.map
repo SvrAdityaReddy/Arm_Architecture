@@ -146,11 +146,11 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         92          0          0          0          0        452   final.o
-        64         26        192          0       4096        940   startup_armcm4.o
-        32         12          0          4          0       5323   system_armcm4.o
+        64         26        192          0       4096        936   startup_armcm4.o
+        32         12          0          4          0       5319   system_armcm4.o
 
     ----------------------------------------------------------------------
-       188         38        192          4       4100       6715   Object Totals
+       188         38        192          4       4100       6707   Object Totals
          0          0          0          0          0          0   (incl. Generated)
          0          0          0          0          4          0   (incl. Padding)
 
@@ -180,8 +180,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-       196         38        192          4       4100       6767   Grand Totals
-       196         38        192          4       4100       6767   ELF Image Totals
+       196         38        192          4       4100       6759   Grand Totals
+       196         38        192          4       4100       6759   ELF Image Totals
        196         38        192          4          0          0   ROM Totals
 
 ==============================================================================
