@@ -14,19 +14,19 @@ ARM Macro Assembler    Page 1
                        a       RN               r1
     8 00000000        2 
                        b       RN               r2
-    9 00000000 F04F 0102       MOV              a, #2
-   10 00000004 F04F 0208       MOV              b, #8
+    9 00000000 F04F 0108       MOV              a, #8
+   10 00000004 F04F 0202       MOV              b, #2
    11 00000008         loop
    12 00000008 EA91 0F02       TEQ              a, b
    13 0000000C D004            BEQ              result
    14 0000000E 4291            CMP              a, b
    15 00000010 BFCC            ITE              GT
-   16 00000012 1A89            SUBGT            a, b
-   17 00000014 1A52            SUBLE            b, a
+   16 00000012 1A89            SUBGT            a, a, b
+   17 00000014 1A52            SUBLE            b, b, a
    18 00000016 E7F7            B                loop
    19 00000018         result
-   20 00000018 460B            MOV              r3, a       ;Output i.e gcd(a,b
-                                                            ) is stored in r3
+   20 00000018 460B            MOV              r3, a       ; Output i.e gcd(a,
+                                                            b) is stored in r3
    21 0000001A E7FE    stop    B                stop        ; stop program
    22 0000001C                 ENDFUNC
    23 0000001C                 END
