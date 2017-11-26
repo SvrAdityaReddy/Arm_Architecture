@@ -8,8 +8,8 @@ exponent	SN s0
 n	SN s1
 sum SN s2
 temp SN s3
-	VMOV.F32 exponent, #1
-	VMOV.F32 n, #10
+	VMOV.F32 exponent, #2
+	VMOV.F32 n, #13
 	VMOV.F32 sum, #1
 	VMOV.F32 temp, #1
 loop 

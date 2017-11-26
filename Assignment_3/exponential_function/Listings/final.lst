@@ -19,8 +19,8 @@ ARM Macro Assembler    Page 1
                        sum     SN               s2
    10 00000000        3 
                        temp    SN               s3
-   11 00000000 EEB7 0A00       VMOV.F32         exponent, #1
-   12 00000004 EEF2 0A04       VMOV.F32         n, #10
+   11 00000000 EEB0 0A00       VMOV.F32         exponent, #2
+   12 00000004 EEF2 0A0A       VMOV.F32         n, #13
    13 00000008 EEB7 1A00       VMOV.F32         sum, #1
    14 0000000C EEF7 1A00       VMOV.F32         temp, #1
    15 00000010         loop
