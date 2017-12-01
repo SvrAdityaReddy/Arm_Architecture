@@ -8,8 +8,10 @@ exponent	SN s0
 n	SN s1
 sum SN s2
 temp SN s3
+	
 	VMOV.F32 exponent, #2 ; x in e^x
 	VMOV.F32 n, #13 ; n in taylor series expansion of e^x
+	;e^x = 1 + (x/1) (1 + (x/2) (1 + (x/3) (........) ) ) equivalent final value stored in sum
 	VMOV.F32 sum, #1 ; to store final value of e^x computed according to x, n
 	VMOV.F32 temp, #1 ;temporary variable to store 1
 loop 

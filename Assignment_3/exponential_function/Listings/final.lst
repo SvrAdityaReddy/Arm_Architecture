@@ -19,33 +19,36 @@ ARM Macro Assembler    Page 1
                        sum     SN               s2
    10 00000000        3 
                        temp    SN               s3
-   11 00000000 EEB0 0A00       VMOV.F32         exponent, #2 ; x in e^x
-   12 00000004 EEF2 0A0A       VMOV.F32         n, #13      ; n in taylor serie
+   11 00000000         
+   12 00000000 EEB0 0A00       VMOV.F32         exponent, #2 ; x in e^x
+   13 00000004 EEF2 0A0A       VMOV.F32         n, #13      ; n in taylor serie
                                                             s expansion of e^x
-   13 00000008 EEB7 1A00       VMOV.F32         sum, #1     ; to store final va
+   14 00000008         ;e^x = 1 + (x/1) (1 + (x/2) (1 + (x/3) (........) ) ) eq
+                       uivalent final value stored in sum
+   15 00000008 EEB7 1A00       VMOV.F32         sum, #1     ; to store final va
                                                             lue of e^x computed
                                                              according to x, n
-   14 0000000C EEF7 1A00       VMOV.F32         temp, #1    ;temporary variable
+   16 0000000C EEF7 1A00       VMOV.F32         temp, #1    ;temporary variable
                                                              to store 1
-   15 00000010         loop
-   16 00000010 EEF5 0A40       VCMP.F32         n, #0x00000000
-   17 00000014 EEF1 FA10       VMRS             APSR_nzcv, FPSCR ; to copy FPSC
+   17 00000010         loop
+   18 00000010 EEF5 0A40       VCMP.F32         n, #0x00000000
+   19 00000014 EEF1 FA10       VMRS             APSR_nzcv, FPSCR ; to copy FPSC
                                                             R status registers 
                                                             to APSR and then ch
                                                             eck eq flag for bra
                                                             nching 
-   18 00000018 D008            BEQ              result
-   19 0000001A EE81 1A20       VDIV.F32         sum, sum, n
-   20 0000001E EE21 1A00       VMUL.F32         sum, sum, exponent
-   21 00000022 EE31 1A21       VADD.F32         sum, sum, temp
-   22 00000026 EE70 0AE1       VSUB.F32         n, n, temp
-   23 0000002A E7F1            B                loop
-   24 0000002C         result
-   25 0000002C EEB0 2A41       VMOV.F32         s4, sum     ; Output is stored 
+   20 00000018 D008            BEQ              result
+   21 0000001A EE81 1A20       VDIV.F32         sum, sum, n
+   22 0000001E EE21 1A00       VMUL.F32         sum, sum, exponent
+   23 00000022 EE31 1A21       VADD.F32         sum, sum, temp
+   24 00000026 EE70 0AE1       VSUB.F32         n, n, temp
+   25 0000002A E7F1            B                loop
+   26 0000002C         result
+   27 0000002C EEB0 2A41       VMOV.F32         s4, sum     ; Output is stored 
                                                             in r4
-   26 00000030 E7FE    stop    B                stop        ; stop program
-   27 00000032                 ENDFUNC
-   28 00000032                 END
+   28 00000030 E7FE    stop    B                stop        ; stop program
+   29 00000032                 ENDFUNC
+   30 00000032                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\final.d -o.\objects\final.o -I.\RTE\_Target_1 -IC:\Ke
 il_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.
@@ -78,25 +81,25 @@ loop 00000010
 
 Symbol: loop
    Definitions
-      At line 15 in file final.s
+      At line 17 in file final.s
    Uses
-      At line 23 in file final.s
+      At line 25 in file final.s
 Comment: loop used once
 result 0000002C
 
 Symbol: result
    Definitions
-      At line 24 in file final.s
+      At line 26 in file final.s
    Uses
-      At line 18 in file final.s
+      At line 20 in file final.s
 Comment: result used once
 stop 00000030
 
 Symbol: stop
    Definitions
-      At line 26 in file final.s
+      At line 28 in file final.s
    Uses
-      At line 26 in file final.s
+      At line 28 in file final.s
 Comment: stop used once
 5 symbols
 344 symbols in table
