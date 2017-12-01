@@ -19,13 +19,21 @@ ARM Macro Assembler    Page 1
                        sum     SN               s2
    10 00000000        3 
                        temp    SN               s3
-   11 00000000 EEB0 0A00       VMOV.F32         exponent, #2
-   12 00000004 EEF2 0A0A       VMOV.F32         n, #13
-   13 00000008 EEB7 1A00       VMOV.F32         sum, #1
-   14 0000000C EEF7 1A00       VMOV.F32         temp, #1
+   11 00000000 EEB0 0A00       VMOV.F32         exponent, #2 ; x in e^x
+   12 00000004 EEF2 0A0A       VMOV.F32         n, #13      ; n in taylor serie
+                                                            s expansion of e^x
+   13 00000008 EEB7 1A00       VMOV.F32         sum, #1     ; to store final va
+                                                            lue of e^x computed
+                                                             according to x, n
+   14 0000000C EEF7 1A00       VMOV.F32         temp, #1    ;temporary variable
+                                                             to store 1
    15 00000010         loop
    16 00000010 EEF5 0A40       VCMP.F32         n, #0x00000000
-   17 00000014 EEF1 FA10       VMRS             APSR_nzcv, FPSCR
+   17 00000014 EEF1 FA10       VMRS             APSR_nzcv, FPSCR ; to copy FPSC
+                                                            R status registers 
+                                                            to APSR and then ch
+                                                            eck eq flag for bra
+                                                            nching 
    18 00000018 D008            BEQ              result
    19 0000001A EE81 1A20       VDIV.F32         sum, sum, n
    20 0000001E EE21 1A00       VMUL.F32         sum, sum, exponent
