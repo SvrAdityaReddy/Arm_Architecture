@@ -11,15 +11,19 @@ number3 RN r2
 	MOV number1, #1
 	MOV number2, #2
 	MOV number3, #3
-	CMP number1, number2
+	; check number1 > number2 if true change to branch 1 else branch2
+	CMP number1, number2 
 	BGE branch1
 	B branch2
 branch1
 	MOV r3, number1
+	; r3 will contain number1 which greatest among number1, number2
 	B branch3
 branch2
 	MOV r3, number2
+	; r3 will contain number2 which greatest among number1, number2
 branch3
+	; check r3 > number3 if true change to branch 4 else branch5
 	CMP r3, number3
 	BGE branch4
 	B branch5

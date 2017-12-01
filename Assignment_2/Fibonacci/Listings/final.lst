@@ -16,32 +16,35 @@ ARM Macro Assembler    Page 1
                        second  RN               r1
     9 00000000        2 
                        number  RN               r2
-   10 00000000 F04F 0000       MOV              first, #0
-   11 00000004 F04F 0101       MOV              second, #1
-   12 00000008 F04F 0202       MOV              number, #2
+   10 00000000 F04F 0000       MOV              first, #0   ; fibonacci(0) = 0
+   11 00000004 F04F 0101       MOV              second, #1  ; fibonacci(1) = 1
+   12 00000008 F04F 0203       MOV              number, #3  ; number whose fibo
+                                                            nacci has to be cal
+                                                            culated
    13 0000000C 2A00            CMP              number, #0
-   14 0000000E D009            BEQ              branch1
-   15 00000010 F1A2 0201       SUB              number, #1
-   16 00000014         loop
-   17 00000014 2A00            CMP              number, #0
-   18 00000016 D007            BEQ              branch2
-   19 00000018 460B            MOV              r3, second  ; r3 is temporary v
+   14 0000000E         ; if number is 0 branched to branch1
+   15 0000000E D009            BEQ              branch1
+   16 00000010 F1A2 0201       SUB              number, #1
+   17 00000014         loop
+   18 00000014 2A00            CMP              number, #0
+   19 00000016 D007            BEQ              branch2
+   20 00000018 460B            MOV              r3, second  ; r3 is temporary v
                                                             ariable
-   20 0000001A 4401            ADD              second, first
-   21 0000001C 4618            MOV              first, r3
-   22 0000001E F1A2 0201       SUB              number, #1
-   23 00000022 E7F7            B                loop
-   24 00000024         branch1                              ; if n==0
-   25 00000024 4604            MOV              r4, first   ; Output is stored 
+   21 0000001A 4401            ADD              second, first
+   22 0000001C 4618            MOV              first, r3
+   23 0000001E F1A2 0201       SUB              number, #1
+   24 00000022 E7F7            B                loop
+   25 00000024         branch1                              ; if n==0
+   26 00000024 4604            MOV              r4, first   ; Output is stored 
                                                             in r4 if n is zero
-   26 00000026 E000            B                stop
-   27 00000028         branch2                              ; if n!=0
-   28 00000028 460C            MOV              r4, second  ; Output is stored 
+   27 00000026 E000            B                stop
+   28 00000028         branch2                              ; if n!=0
+   29 00000028 460C            MOV              r4, second  ; Output is stored 
                                                             in r4 if n is non z
                                                             ero
-   29 0000002A E7FE    stop    B                stop        ; stop program
-   30 0000002C                 ENDFUNC
-   31 0000002C                 END
+   30 0000002A E7FE    stop    B                stop        ; stop program
+   31 0000002C                 ENDFUNC
+   32 0000002C                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\final.d -o.\objects\final.o -I.\RTE\_Target_1 -IC:\Ke
 il_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.
@@ -74,34 +77,34 @@ branch1 00000024
 
 Symbol: branch1
    Definitions
-      At line 24 in file final.s
+      At line 25 in file final.s
    Uses
-      At line 14 in file final.s
+      At line 15 in file final.s
 Comment: branch1 used once
 branch2 00000028
 
 Symbol: branch2
    Definitions
-      At line 27 in file final.s
+      At line 28 in file final.s
    Uses
-      At line 18 in file final.s
+      At line 19 in file final.s
 Comment: branch2 used once
 loop 00000014
 
 Symbol: loop
    Definitions
-      At line 16 in file final.s
+      At line 17 in file final.s
    Uses
-      At line 23 in file final.s
+      At line 24 in file final.s
 Comment: loop used once
 stop 0000002A
 
 Symbol: stop
    Definitions
-      At line 29 in file final.s
+      At line 30 in file final.s
    Uses
-      At line 26 in file final.s
-      At line 29 in file final.s
+      At line 27 in file final.s
+      At line 30 in file final.s
 
 6 symbols
 344 symbols in table

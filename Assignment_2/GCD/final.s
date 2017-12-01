@@ -8,11 +8,15 @@ a	RN r1
 b	RN r2
 	MOV a, #8
 	MOV b, #2
+	; MOV a, #8
+	; MOV b, #4
 loop 
 	TEQ a, b
+	; if a==b branch to result
 	BEQ result
 	CMP a, b
 	ITE GT
+	; if a > b then a=a-b else b=b-a
 	SUBGT a, a, b
 	SUBLE b, b, a
 	B loop
