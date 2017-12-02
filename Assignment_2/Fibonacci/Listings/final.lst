@@ -23,32 +23,52 @@ ARM Macro Assembler    Page 1
                                                             culated
    13 0000000C 2A00            CMP              number, #0
    14 0000000E         ; if number is 0 branched to branch1
-   15 0000000E D009            BEQ              branch1
-   16 00000010 F1A2 0201       SUB              number, #1
-   17 00000014         loop
-   18 00000014 2A00            CMP              number, #0
-   19 00000016 D007            BEQ              branch2
-   20 00000018 460B            MOV              r3, second  ; r3 is temporary v
+   15 0000000E F04F 5500       MOV              r5, #0x20000000 ; initial addre
+                                                            ss from which first
+                                                             (number+1) element
+                                                            s of fibonacci seri
+                                                            es is stored
+   16 00000012 6028            STR              first, [R5]
+   17 00000014 F105 0504       ADD              r5, #4
+   18 00000018 D00F            BEQ              branch1
+   19 0000001A F1A2 0201       SUB              number, #1
+   20 0000001E 6029            STR              second, [R5]
+   21 00000020 F105 0504       ADD              r5, #4
+   22 00000024         loop
+   23 00000024 2A00            CMP              number, #0
+   24 00000026 D00A            BEQ              branch2
+   25 00000028 460B            MOV              r3, second  ; r3 is temporary v
                                                             ariable
-   21 0000001A 4401            ADD              second, first
-   22 0000001C 4618            MOV              first, r3
-   23 0000001E F1A2 0201       SUB              number, #1
-   24 00000022 E7F7            B                loop
-   25 00000024         branch1                              ; if n==0
-   26 00000024 4604            MOV              r4, first   ; Output is stored 
-                                                            in r4 if n is zero
-   27 00000026 E000            B                stop
-   28 00000028         branch2                              ; if n!=0
-   29 00000028 460C            MOV              r4, second  ; Output is stored 
-                                                            in r4 if n is non z
-                                                            ero
-   30 0000002A E7FE    stop    B                stop        ; stop program
-   31 0000002C                 ENDFUNC
-   32 0000002C                 END
+   26 0000002A 4401            ADD              second, first
+   27 0000002C 6029            STR              second, [R5]
+   28 0000002E F105 0504       ADD              r5, #4
+   29 00000032 4618            MOV              first, r3
+   30 00000034 F1A2 0201       SUB              number, #1
+   31 00000038 E7F4            B                loop
+   32 0000003A         branch1                              ; if n==0
+   33 0000003A 4604            MOV              r4, first   ; Output is stored 
+                                                            in r4 if number is 
+                                                            zero i.e fibonacci(
+                                                            0)
+   34 0000003C E000            B                stop
+   35 0000003E         branch2                              ; if n!=0
+   36 0000003E 460C            MOV              r4, second  ; Output is stored 
+                                                            in r4 if number is 
+                                                            non zero i.e fibona
+                                                            cci(number)
+   37 00000040 E7FE    stop    B                stop        ; stop program
+   38 00000042                 ENDFUNC
+   39 00000042                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\final.d -o.\objects\final.o -I.\RTE\_Target_1 -IC:\Ke
 il_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.
 0.1\Device\ARM\ARMCM4\Include --predefine="__EVAL SETA 1" --predefine="__UVISIO
+
+
+
+ARM Macro Assembler    Page 2 
+
+
 N_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="ARMCM4_FP SETA 1" -
 -list=.\listings\final.lst final.s
 
@@ -73,38 +93,38 @@ Symbol: appcode
    Uses
       None
 Comment: appcode unused
-branch1 00000024
+branch1 0000003A
 
 Symbol: branch1
    Definitions
-      At line 25 in file final.s
+      At line 32 in file final.s
    Uses
-      At line 15 in file final.s
+      At line 18 in file final.s
 Comment: branch1 used once
-branch2 00000028
+branch2 0000003E
 
 Symbol: branch2
    Definitions
-      At line 28 in file final.s
+      At line 35 in file final.s
    Uses
-      At line 19 in file final.s
+      At line 24 in file final.s
 Comment: branch2 used once
-loop 00000014
+loop 00000024
 
 Symbol: loop
    Definitions
-      At line 17 in file final.s
+      At line 22 in file final.s
    Uses
-      At line 24 in file final.s
+      At line 31 in file final.s
 Comment: loop used once
-stop 0000002A
+stop 00000040
 
 Symbol: stop
    Definitions
-      At line 30 in file final.s
+      At line 37 in file final.s
    Uses
-      At line 27 in file final.s
-      At line 30 in file final.s
+      At line 34 in file final.s
+      At line 37 in file final.s
 
 6 symbols
 344 symbols in table
